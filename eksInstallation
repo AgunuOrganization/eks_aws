@@ -1,0 +1,38 @@
+1. Install aws cli
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+aws --version
+Configure your AWS CLI credentials
+
+aws configure
+AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+Default region name [None]: region-code
+Default output format [None]: json
+
+Install ekscli
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+which eksctl
+eksclt version
+eksclt create --help
+eksctl create cluster --help
+eksctl help
+eksctl version
+
+eksctl create cluster -n my-cluster --version 1.17 --region us-west-2 --nodegroup-name standard-nodes --nodes 3 --nodes-min 1 \
+--nodes-max 4 --ssh-access --ssh-public-key name-of-ec2-keypair --managed
+
+2.Install kubectl 
+curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin
+
+kubectl version --short --client
+
+aws-aim-authenticator
+curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator
+chmod +x ./aws-iam-authenticator
+sudo mv aws-iam-authenticator /usr/local/bin
+
